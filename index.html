@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>frame one</title>
+  <style>
+    html, body {
+      height: 100%;
+    }
+    body {
+      font-size: 15vw;
+      line-height: 1em;
+      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Helvetica, Arial, sans-serif;
+      font-weight: 600;
+      margin: 0;
+      text-align: center;
+    }
+    .title {
+      transition: color 1s linear;
+      position: absolute;
+      top: 48%;
+      left: 0;
+      right: 0;
+      transform: translate(0, -50%);
+    }
+    .title.active {
+      color: orange;
+    }
+  </style>
+</head>
+<body>
+  <span class="title">response sended</span>
+
+  <script>
+    var title = document.getElementsByClassName('title')[0];
+
+    setTimeout(function() {
+      sendDataToParentWindow('Hello from 2nd frame!');
+
+      function sendDataToParentWindow(message) {
+        var data = {
+          message: message
+        };
+        window.top.postMessage(data, '*');
+        title.classList.add('active');
+      }
+    }, 750);
+  </script>
+</body>
+</html>
