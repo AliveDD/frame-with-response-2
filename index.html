@@ -35,7 +35,7 @@
     var title = document.getElementsByClassName('title')[0];
 
     setTimeout(function() {
-      sendDataToParentWindow('Hello from 2nd frame!');
+      sendDataToParentWindow('Two');
 
       function sendDataToParentWindow(message) {
         var data = {
@@ -44,7 +44,7 @@
         window.top.postMessage(data, '*');
         title.classList.add('active');
       }
-    }, 750);
+    }, 1500);
   </script>
 </body>
 </html>
